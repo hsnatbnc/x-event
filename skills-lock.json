@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "skills": {
+    "creative-director": {
+      "source": "dylantarre/animation-principles",
+      "sourceType": "github",
+      "computedHash": "b4cfc2a00cc8e32fd223f7345425bba9db1f1f30478400b576c79ddee2703c6f"
+    },
+    "gsap-scrolltrigger": {
+      "source": "bbeierle12/skill-mcp-claude",
+      "sourceType": "github",
+      "computedHash": "fd5b97f6c8b60d5d3373d9edc07802a5bbb4da931d8502656561f6009623e960"
+    },
+    "storytelling-web": {
+      "source": "wang1212/storytelling-web",
+      "sourceType": "github",
+      "computedHash": "2fbd9c2bb5c2393739004d5a9853f2ed53ea77a9e696d1b30b1ea0d857f42dbb"
+    },
+    "three-js": {
+      "source": "mindrally/skills",
+      "sourceType": "github",
+      "computedHash": "c48ddf92429d86404b3aecf86f7ab1f1fe9b9625bf17bad29a488db25cf2765f"
+    },
+    "threejs-shaders": {
+      "source": "cloudai-x/threejs-skills",
+      "sourceType": "github",
+      "computedHash": "649ceb058edfb5cfd51e80fb3a6c57aca9bab4a9d3a03f6077aa9502be0c0771"
+    }
+  }
+}
