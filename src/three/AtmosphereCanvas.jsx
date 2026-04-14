@@ -140,11 +140,33 @@ export default function AtmosphereCanvas({ progressRef }) {
         }
 
         // palette mixing — five "acts" in the scroll journey
-        vec3 palette(float p) {
-          // 00 hero — deep ink + ember coal
-          vec3 ink   = vec3(0.024, 0.028, 0.040);
-          vec3 coal  = vec3(0.60,  0.18,  0.06);
-          vec3 ember = vec3(1.00,  0.42,  0.17);
+        vec3 palette(float p, float tm) {
+          // 00 hero — deep ink + slowly cycling blue / red / purple accent.
+          // The three stops are tuned to near-equal luminance so the smoke
+          // keeps the same contrast as the eye moves through the hues — only
+          // the *temperature* of the scene shifts, never its weight.
+          vec3 heroBlue   = vec3(0.18, 0.40, 1.00);
+          vec3 heroRed    = vec3(1.00, 0.22, 0.30);
+          vec3 heroOrange = vec3(1.00, 0.42, 0.17);
+
+          // ~30s full loop (cyc = tm * 0.033 → period ≈ 30s). Three equal
+          // thirds with smoothstep easing on each leg so transitions slow-in
+          // and slow-out rather than clipping between colors.
+          float phase = fract(tm * 0.033);
+          vec3 heroAccent;
+          if (phase < 0.3333) {
+            heroAccent = mix(heroOrange, heroRed,    smoothstep(0.0,    0.3333, phase));
+          } else if (phase < 0.6666) {
+            heroAccent = mix(heroRed,    heroBlue,   smoothstep(0.3333, 0.6666, phase));
+          } else {
+            heroAccent = mix(heroBlue,   heroOrange, smoothstep(0.6666, 1.0,    phase));
+          }
+
+          // Tint the dark base a hair toward the current hero hue so the
+          // shadows and highlights belong to the same world.
+          vec3 ink   = vec3(0.022, 0.026, 0.042) + heroAccent * 0.018;
+          vec3 coal  = heroAccent * 0.35;
+          vec3 ember = heroAccent;
 
           // 01 manifesto — quiet steel
           vec3 steel1 = vec3(0.035, 0.045, 0.065);
@@ -211,10 +233,10 @@ export default function AtmosphereCanvas({ progressRef }) {
           );
           float f = fbm(p + r * 1.6);
 
-          vec3 pal = palette(uProgress);
+          vec3 pal = palette(uProgress, uTime);
           // split base/accent by sampling palette at two points
-          vec3 base   = palette(uProgress) * 0.15;
-          vec3 accent = palette(uProgress) * 1.1;
+          vec3 base   = palette(uProgress, uTime) * 0.15;
+          vec3 accent = palette(uProgress, uTime) * 1.1;
 
           // core field — base + noise-driven accent bloom
           vec3 col = base;
