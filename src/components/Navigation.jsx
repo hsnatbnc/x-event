@@ -1,6 +1,6 @@
 export default function Navigation() {
   return (
-    <header className="nav">
+    <header className="nav nav--home">
       <a href="#home" className="nav__mark" aria-label="X Event — home">
         <span className="nav__glyph">x</span>
         <span>X&nbsp;Event&nbsp;/&nbsp;Studio</span>

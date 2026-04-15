@@ -323,6 +323,7 @@ button {
   display: inline-block;
   overflow: hidden;
   vertical-align: top;
+  user-select: none;
 }
 
 .js-mask > span {
