@@ -502,10 +502,10 @@ button {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding-top: clamp(6rem, 12vh, 10rem);
-  padding-bottom: clamp(2rem, 5vh, 4rem);
+  justify-content: center;
   max-width: 1200px;
+  position: relative;
+  padding-bottom: 5rem;
 }
 
 .manifesto__quote {
@@ -531,18 +531,32 @@ button {
 }
 
 .manifesto__footnote {
+  position: absolute;
+  bottom: clamp(5vh, 7vh, 10vh);
+  left: 0;
+  right: 0;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: 1rem;
   flex-wrap: wrap;
+  flex-direction: column;
   padding-top: 1.5rem;
-  border-top: 1px solid var(--hairline);
+  text-align: center;
   font-family: var(--font-mono);
   font-size: var(--t-mono);
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--bone-mute);
+}
+
+.manifesto__footnote::before {
+  content: '';
+  display: block;
+  width: 4rem;
+  height: 1px;
+  background: var(--hairline);
+  margin-bottom: 1.5rem;
 }
 
 /* -------------------------------------------------------------
@@ -564,6 +578,7 @@ button {
   font-size: var(--t-lead);
   color: var(--bone-dim);
   line-height: 1.55;
+  font-weight: 500;
 }
 
 .studio__body {
@@ -573,49 +588,75 @@ button {
   max-width: 60ch;
 }
 
+/* --- Service grid ----------------------------------------------------- */
+
 .studio__grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: clamp(1.5rem, 3vw, 2.5rem);
-  margin-top: clamp(2rem, 4vw, 4rem);
+  grid-template-columns: 1fr;
+  gap: clamp(1.25rem, 2.5vw, 1.75rem);
+  margin-top: clamp(1.25rem, 2.5vw, 2.25rem);
 }
 
-.studio__card {
-  padding: 2rem 0 0;
-  border-top: 1px solid var(--hairline);
+.svc {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(1.5rem, 2.5vw, 2rem) clamp(1.5rem, 2.5vw, 2.25rem);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--hairline);
+  overflow: hidden;
 }
 
-.studio__card h3 {
+/* Card body */
+.svc__body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-width: 0;
+  flex: 1;
+}
+
+.svc__title {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: var(--t-h3);
+  font-size: clamp(1.25rem, 2vw, 1.65rem);
   color: var(--bone);
-  margin: 0 0 1rem;
-  letter-spacing: -0.01em;
-}
-
-.studio__card p,
-.studio__card li {
-  font-size: 0.95rem;
-  color: var(--bone-mute);
-  line-height: 1.6;
-}
-
-.studio__card ul {
   margin: 0;
-  padding: 0;
-  list-style: none;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
 }
 
-.studio__card li {
-  padding: 0.35rem 0;
-  border-bottom: 1px dashed var(--hairline);
+.svc__desc {
+  font-family: var(--font-body);
+  font-size: 0.925rem;
+  line-height: 1.6;
+  color: var(--bone-mute);
+  margin: 0;
+  flex: 1;
 }
 
-.studio__card li:last-child {
-  border-bottom: 0;
+/* Tag pills — pinned to bottom */
+.svc__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: auto;
+  padding-top: 0.75rem;
 }
 
+.svc__tag {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--bone-mute);
+  padding: 0.3rem 0.7rem;
+  border: 1px solid var(--hairline);
+  background: rgba(255, 255, 255, 0.015);
+}
+
+/* --- Desktop: 2×2 ---------------------------------------------------- */
 @media (min-width: 860px) {
   .studio__intro {
     display: grid;
@@ -624,7 +665,15 @@ button {
     align-items: start;
   }
   .studio__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* --- Wide desktop: 4-across ------------------------------------------ */
+@media (min-width: 1200px) {
+  .studio__grid {
     grid-template-columns: repeat(4, 1fr);
+    gap: clamp(1rem, 1.8vw, 1.5rem);
   }
 }
 
@@ -677,8 +726,7 @@ button {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: clamp(1.25rem, 2.4vw, 2rem);
-  border-top: 1px solid var(--hairline);
-  padding-top: clamp(2rem, 4vw, 3rem);
+  margin-top: clamp(5rem, 10vw, 8rem);
 }
 
 .cap-row {
@@ -728,7 +776,7 @@ button {
   font-family: var(--font-mono);
   font-size: var(--t-mono);
   letter-spacing: 0.18em;
-  color: var(--ember);
+  color: var(--amber-pale);
 }
 
 .cap-row__title {
@@ -744,7 +792,7 @@ button {
 
 .cap-row:hover .cap-row__title,
 .cap-row.is-active .cap-row__title {
-  color: var(--ember);
+  color: var(--amber-pale);
 }
 
 .cap-row__bold {

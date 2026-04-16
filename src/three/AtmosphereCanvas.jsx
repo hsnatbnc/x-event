@@ -240,9 +240,21 @@ export default function AtmosphereCanvas({ progressRef }) {
           float contactWeight = smoothstep(0.85, 0.95, uProgress);
           float logoWeight    = max(heroWeight, contactWeight);
           if (uLogoReady > 0.5 && logoWeight > 0.001) {
-            // Very slow scale breathing so the mark feels like it's drifting
-            // through depth rather than sitting flat.
-            float drift = 1.0
+            // Weather-driven scale: logo grows when clouds clear,
+            // shrinks as clouds roll in. Phase starts at -π/2 so
+            // the cycle begins at its trough (hidden, small) and
+            // the first motion is always the logo emerging.
+            float weatherForScale = smoothstep(0.0, 1.0, sqrt(
+              sin(uTime * 0.25 - 1.5708) * 0.5 + 0.5
+            ));
+            // Intro: fade from zero over the first ~4s so the logo
+            // doesn't pop in — it grows out of the atmosphere.
+            float intro = smoothstep(0.0, 4.0, uTime);
+            weatherForScale *= intro;
+            // Shrink to 82% at peak cover, full size when clear.
+            float weatherScale = mix(0.82, 1.0, weatherForScale);
+
+            float drift = weatherScale
               + sin(uTime * 0.037) * 0.012 * uIntensity
               + sin(uTime * 0.061 + 1.3) * 0.006 * uIntensity;
 
@@ -283,8 +295,10 @@ export default function AtmosphereCanvas({ progressRef }) {
             // ~25s full weather cycle. Square root skews the wave
             // so it lingers in the clear phase (~17s visible) and
             // passes through the hidden dip quickly (~8s).
-            float weatherSin = sin(uTime * 0.25) * 0.5 + 0.5;
-            float weather = smoothstep(0.0, 1.0, sqrt(weatherSin));
+            // Same phase as scale so clouds and size stay in lockstep.
+            // Starts at trough = full cloud cover on page load.
+            float weatherSin = sin(uTime * 0.25 - 1.5708) * 0.5 + 0.5;
+            float weather = smoothstep(0.0, 1.0, sqrt(weatherSin)) * intro;
             weather = mix(0.55, weather, uIntensity);
 
             // Threshold driven by weather — this is what makes

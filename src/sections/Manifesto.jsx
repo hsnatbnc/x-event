@@ -1,26 +1,13 @@
 const QUOTE = [
   'We',
   'don’t',
-  'decorate',
-  'the',
-  'screen.',
-  'We',
-  'compose',
-  'it',
-  'scene',
-  'by',
-  'scene,',
-  'so',
-  'every',
-  'scroll',
-  'becomes',
-  'a',
-  'moment',
-  'you',
-  'can’t',
-  'look',
-  'away',
-  'from.'
+  'create',
+  'events',
+  'we,',
+  'create',
+  'meaning',
+  'and',
+  'impact.'
 ];
 
 export default function Manifesto() {
@@ -39,8 +26,7 @@ export default function Manifesto() {
             ))}
           </p>
           <div className="manifesto__footnote">
-            <span className="js-fade">A brand film in six scenes</span>
-            <span className="js-fade">Read slowly</span>
+            <span className="js-fade">Where Experience Meets Perspective</span>
           </div>
         </div>
       </section>

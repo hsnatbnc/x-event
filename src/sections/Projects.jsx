@@ -8,7 +8,7 @@ export default function Projects() {
   return (
     <section id="projects" className="scene projects" aria-label="Selected projects">
       <p className="scene__marker">
-        <span>05</span>&nbsp;/&nbsp;Selected work
+        <span>05</span>&nbsp;/&nbsp;PROJECTS
       </p>
 
       <div className="scene__inner">
@@ -19,7 +19,7 @@ export default function Projects() {
             </span>{' '}
             <span className="js-mask">
               <span>
-                <em>work.</em>
+                <em>projects.</em>
               </span>
             </span>
           </h2>

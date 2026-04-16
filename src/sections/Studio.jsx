@@ -1,15 +1,38 @@
+const services = [
+  {
+    title: 'Global Conferences & Summits',
+    desc: 'High-level executive gatherings and international meetings with impeccable production and guest experience.',
+    tags: ['EXECUTIVE EVENTS', 'STAGE DESIGN', 'AV'],
+  },
+  {
+    title: 'Sports Events & Tournament Production',
+    desc: 'Major sporting events, tournaments and live broadcasts on a grand scale.',
+    tags: ['SPORTS', 'BROADCAST', 'SHOW FLOW'],
+  },
+  {
+    title: 'Turnkey Logistics',
+    desc: 'Talent booking, VIP transport, and full-service event logistics.',
+    tags: ['TALENT', 'LOGISTICS', 'HOSPITALITY'],
+  },
+  {
+    title: 'Artist Management',
+    desc: 'End to end artist operations management, covering booking, contracts, technical riders, transfers, accommodation, and show-day coordination.',
+    tags: ['Techinical riders', 'Booking', 'Contracts'],
+  },
+];
+
 export default function Studio() {
   return (
-    <section id="about" className="scene studio" aria-label="Studio">
+    <section id="about" className="scene studio" aria-label="Event Ecosystem">
       <p className="scene__marker">
-        <span>03</span>&nbsp;/&nbsp;The studio
+        <span>03</span>&nbsp;/&nbsp;EVENT ECOSYSTEM
       </p>
 
       <div className="scene__inner studio__inner">
         <div className="studio__intro">
           <div>
             <p className="eyebrow js-fade" style={{ marginBottom: '1.5rem' }}>
-              Who we are
+              Immersive Event Ecosystems <br/>Turnkey Global Production
             </p>
             <h2 className="display studio__heading">
               <span className="js-mask">
@@ -25,54 +48,29 @@ export default function Studio() {
 
           <div>
             <p className="studio__lead js-rise">
-              X Event is a Turkey-based studio where designers, 3D artists,
-              motion directors and engineers share one workflow — so
-              concepts move from first spark to final delivery with
-              clarity, consistency and craft.
+             From global conferences and stadium-scale tournaments to immersive brand worlds, X-Event delivers end-to-end event ecosystems - strategy, production, broadcast, logistics and flawless execution, all under one roof.
+
             </p>
             <p className="studio__body js-rise" style={{ marginTop: '1.5rem' }}>
-              We don’t chase trends. We build distinctive digital experiences
-              that represent each brand clearly, connect with the right
-              audience, and stay memorable long after the first interaction.
+              At X-Event, we transform ambitious ideas into unforgettable live experiences, seamlessly produced, globally scalable, and built to move people.
             </p>
           </div>
         </div>
 
         <div className="studio__grid">
-          <article className="studio__card js-rise">
-            <h3>Who we work with</h3>
-            <p>
-              Brands, agencies and future-focused teams who want more than
-              standard digital output.
-            </p>
-          </article>
-
-          <article className="studio__card js-rise">
-            <h3>Standard of craft</h3>
-            <p>
-              A quality bar shaped by internationally recognized digital
-              craftsmanship and high production value.
-            </p>
-          </article>
-
-          <article className="studio__card js-rise">
-            <h3>Writing</h3>
-            <ul>
-              <li>Brand experience case studies</li>
-              <li>Interactive campaign highlights</li>
-              <li>Digital production insights</li>
-            </ul>
-          </article>
-
-          <article className="studio__card js-rise">
-            <h3>Talks</h3>
-            <ul>
-              <li>Design &amp; experience events</li>
-              <li>Creative technology conferences</li>
-              <li>Interactive production talks</li>
-              <li>Brand innovation panels</li>
-            </ul>
-          </article>
+          {services.map((s, i) => (
+            <article key={i} className="svc js-rise">
+              <div className="svc__body">
+                <h3 className="svc__title">{s.title}</h3>
+                <p className="svc__desc">{s.desc}</p>
+                <div className="svc__tags">
+                  {s.tags.map((t, j) => (
+                    <span key={j} className="svc__tag">{t}</span>
+                  ))}
+                </div>
+              </div>
+            </article>
+          ))}
         </div>
       </div>
     </section>

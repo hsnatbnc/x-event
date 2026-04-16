@@ -27,10 +27,10 @@ const CAPABILITIES = [
 
 export default function Capabilities() {
   return (
-    <section id="capabilities" className="scene capabilities" aria-label="Capabilities">
+    <section id="capabilities" className="scene capabilities" aria-label="How We Work?">
       <div className="cap-pin">
         <p className="scene__marker">
-          <span>04</span>&nbsp;/&nbsp;Capabilities
+          <span>04</span>&nbsp;/&nbsp;How We Work?
         </p>
 
         <div className="cap-pin__head">
@@ -45,8 +45,7 @@ export default function Capabilities() {
             </span>
           </h2>
           <p className="lead cap-pin__lead js-rise">
-            Strategy, creative, technology and production run as a single
-            production — so ideas never lose their edge in hand-off.
+            We analyze your needs based on your expectations, and transform insights into creative, innovative, and impactful solutions—delivered with precision.
           </p>
         </div>
 

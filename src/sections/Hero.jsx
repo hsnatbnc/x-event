@@ -18,9 +18,8 @@ export default function Hero() {
 
         <div className="hero__footer">
           <p className="hero__tag js-rise">
-            A creative production &amp; interactive experience studio.
-            We pair cinematic storytelling with WebGL craft to make
-            ambitious brands unmissable.
+            Who we are? <br/>
+            X Event combines 15+ years of industry expertise with a bold, modern mindset to deliver distinctive experiences that inspire and perform.
           </p>
           <a className="hero__scroll js-rise" href="#manifesto">
             Scroll to enter

@@ -7,9 +7,9 @@ export default function Navigation() {
       </a>
 
       <nav className="nav__links" aria-label="Primary">
-        <a href="#home">Index</a>
-        <a href="#about">Studio</a>
-        <a href="#projects">Work</a>
+        <a href="#home">Home</a>
+        <a href="#about">EVENT ECOSYSTEM</a>
+        <a href="#projects">PROJECTS</a>
         <a href="#contact">Contact</a>
       </nav>
 
