@@ -21,20 +21,20 @@ const services = [
   },
 ];
 
-export default function Studio() {
+export default function EventEcosystem() {
   return (
-    <section id="about" className="scene studio" aria-label="Event Ecosystem">
+    <section id="about" className="scene eventecosystem" aria-label="Event Ecosystem">
       <p className="scene__marker">
         <span>03</span>&nbsp;/&nbsp;EVENT ECOSYSTEM
       </p>
 
-      <div className="scene__inner studio__inner">
-        <div className="studio__intro">
+      <div className="scene__inner eventecosystem__inner">
+        <div className="eventecosystem__intro">
           <div>
             <p className="eyebrow js-fade" style={{ marginBottom: '1.5rem' }}>
               Immersive Event Ecosystems <br/>Turnkey Global Production
             </p>
-            <h2 className="display studio__heading">
+            <h2 className="display eventecosystem__heading">
               <span className="js-mask">
                 <span>A production house</span>
               </span>{' '}
@@ -47,17 +47,17 @@ export default function Studio() {
           </div>
 
           <div>
-            <p className="studio__lead js-rise">
+            <p className="eventecosystem__lead js-rise">
              From global conferences and stadium-scale tournaments to immersive brand worlds, X-Event delivers end-to-end event ecosystems - strategy, production, broadcast, logistics and flawless execution, all under one roof.
 
             </p>
-            <p className="studio__body js-rise" style={{ marginTop: '1.5rem' }}>
+            <p className="eventecosystem__body js-rise" style={{ marginTop: '1.5rem' }}>
               At X-Event, we transform ambitious ideas into unforgettable live experiences, seamlessly produced, globally scalable, and built to move people.
             </p>
           </div>
         </div>
 
-        <div className="studio__grid">
+        <div className="eventecosystem__grid">
           {services.map((s, i) => (
             <article key={i} className="svc js-rise">
               <div className="svc__body">

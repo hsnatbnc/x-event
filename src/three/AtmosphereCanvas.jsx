@@ -337,6 +337,12 @@ export default function AtmosphereCanvas({ progressRef }) {
             col += moonGlow * backLight * 0.18;
           }
 
+          // Extra dark-fog density for the Event Ecosystem section so
+          // text stays readable against the bright green atmosphere.
+          float ecoZone = smoothstep(0.12, 0.20, uProgress)
+                        * (1.0 - smoothstep(0.30, 0.38, uProgress));
+          col *= mix(1.0, 0.4, ecoZone);
+
           // vignette — pulls the eye toward center content
           float vig = smoothstep(1.4, 0.25, length(p));
           col *= vig * 0.9 + 0.18;

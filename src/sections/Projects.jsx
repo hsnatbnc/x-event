@@ -24,8 +24,9 @@ export default function Projects() {
             </span>
           </h2>
           <p className="lead projects__lead js-rise">
-            A range of X Event projects across event production, stage design,
-            live performance, and creative direction — each built to carry a
+            Take a look at some of the projects we've brought to life -
+            from large-scale event production and stage design to live
+            performance and creative direction. Each one built to carry a
             brand further than the brief asked for.
           </p>
         </div>
@@ -75,8 +76,11 @@ export default function Projects() {
         </div>
 
         <p className="projects__invite js-rise">
-          <em>If</em> you have a bold event idea,
-          <br />X Event can turn it into an unforgettable experience.
+          Have a bold event idea?
+          <br />
+          <a href="#contact" className="projects__cta">
+            Let's talk about your next event &rarr;
+          </a>
         </p>
       </div>
 

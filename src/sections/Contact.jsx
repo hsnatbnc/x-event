@@ -2,15 +2,13 @@ export default function Contact() {
   return (
     <section id="contact" className="scene contact" aria-label="Contact">
       <p className="scene__marker">
-        <span>06</span>&nbsp;/&nbsp;Closing scene
+        <span>06</span>&nbsp;/&nbsp;Contact Us
       </p>
 
       <div className="scene__inner contact__inner">
         <div className="contact__body">
           <div>
-            <p className="eyebrow eyebrow--ember js-fade" style={{ marginBottom: '1.5rem' }}>
-              Let&apos;s build something
-            </p>
+            
             <h2 className="contact__kicker">
               <span className="js-mask">
                 <span>If your next</span>
@@ -64,7 +62,7 @@ export default function Contact() {
 
         <footer className="contact__foot">
           <span>&copy; X Event &mdash; Interactive Experience Studio</span>
-          <span>Scene VI &middot; End</span>
+          <span>raptor digital</span>
         </footer>
       </div>
     </section>

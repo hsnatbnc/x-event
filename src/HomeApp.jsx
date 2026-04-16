@@ -4,7 +4,7 @@ import ScrollProgress from './components/ScrollProgress.jsx';
 import AtmosphereCanvas from './three/AtmosphereCanvas.jsx';
 import Hero from './sections/Hero.jsx';
 import Manifesto from './sections/Manifesto.jsx';
-import Studio from './sections/Studio.jsx';
+import EventEcosystem from './sections/EventEcosystem.jsx';
 import Capabilities from './sections/Capabilities.jsx';
 import Projects from './sections/Projects.jsx';
 import Contact from './sections/Contact.jsx';
@@ -28,7 +28,7 @@ export default function HomeApp() {
       <main className={`story ${ready ? 'is-ready' : ''}`}>
         <Hero />
         <Manifesto />
-        <Studio />
+        <EventEcosystem />
         <Capabilities />
         <Projects />
         <Contact />
