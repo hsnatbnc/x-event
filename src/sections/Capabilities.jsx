@@ -2,22 +2,26 @@ const CAPABILITIES = [
   {
     idx: '01',
     title: 'Strategy',
-    copy: 'We open every project by mapping the territory — audience truths, brand ambition, technical reality. Discovery sessions and creative leadership shape the story arc and the stack before a single pixel moves. Strategy here is not a slide deck. It is the spine that keeps every later decision honest.'
+    bold: 'We design experiences with purpose.',
+    copy: 'By analyzing your brand objectives and uncovering real audience insights, we craft the right message with the right approach. Every project starts with a strong strategic foundation and ends with measurable impact.'
   },
   {
     idx: '02',
     title: 'Creative',
-    copy: 'Art direction, motion, interface and illustration live under one roof so a brand never feels stitched together. We design for atmosphere first, then layer the interactions that make a screen feel alive. Every frame is treated as a moment inside a wider visual language. Detail is where craft becomes felt.'
+    bold: 'We turn ideas into unforgettable moments.',
+    copy: 'We bring your brand story to life through stagecraft, content, and storytelling. Inspired by culture, trends, and multidisciplinary arts, we create experiences that are not only seen but truly felt.'
   },
   {
     idx: '03',
     title: 'Technology',
-    copy: 'We build with WebGL, real-time engines and bespoke front-end so the work performs as cinematically as it looks. From browser pieces to room-scale installations and headset experiences, engineers ship production-grade code. Performance, accessibility and longevity are baked in from day one. Magic without fragility.'
+    bold: 'Powered by cutting-edge technology.',
+    copy: 'From lighting, sound, and LED systems to interactive solutions, XR, and mapping — we use the latest technologies to elevate experiences into immersive environments. For us, technology is not just a tool, but an integral part of the creative vision.'
   },
   {
     idx: '04',
     title: 'Production',
-    copy: 'Procedural modeling, 3D asset pipelines, optimization and animation are handled in-house from kickoff to delivery. Production runs as a creative discipline — not a back-end service that arrives after design. Tight loops between artists and engineers keep ambition and feasibility aligned. Work ships at the quality it was promised.'
+    bold: 'From concept to execution — flawlessly delivered.',
+    copy: 'We manage every aspect of production end-to-end, including stage, lighting, sound, décor, and operations. From large-scale productions to boutique experiences, we deliver every detail with precision and excellence.'
   }
 ];
 
@@ -51,6 +55,7 @@ export default function Capabilities() {
             <article className="cap-row" key={cap.idx}>
               <span className="cap-row__idx">{cap.idx}</span>
               <h3 className="cap-row__title">{cap.title}</h3>
+              <p className="cap-row__bold"><strong>{cap.bold}</strong></p>
               <p className="cap-row__copy">{cap.copy}</p>
             </article>
           ))}

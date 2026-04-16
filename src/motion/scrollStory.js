@@ -198,75 +198,48 @@ export default function setupScrollStory({ progressRef }) {
     }
 
     // --------------------------------------------------------------
-    // CAPABILITIES — pinned rows, one highlights at a time
+    // CAPABILITIES — whole block animates in together on scroll
     // --------------------------------------------------------------
+    const capStack = document.querySelector('.cap-stack');
     const capRows = gsap.utils.toArray('.cap-row');
-    if (capRows.length && !reduced && window.innerWidth > 760) {
-      // Stage rows so the pin has visible motion to scrub through —
-      // without this, the section feels frozen during the pin.
-      gsap.set(capRows, { y: 40, autoAlpha: 0.2 });
+    capRows.forEach((r) => r.classList.add('is-active'));
 
-      const capTl = gsap.timeline({
-        defaults: { ease: 'power2.out' },
+    if (capStack && !reduced) {
+      gsap.set(capStack, { y: 60, autoAlpha: 0 });
+      gsap.to(capStack, {
+        y: 0,
+        autoAlpha: 1,
+        duration: 1,
+        ease: 'power2.out',
         scrollTrigger: {
           trigger: '.cap-pin',
-          start: 'top top',
-          end: () => '+=' + window.innerHeight * 1.4,
-          pin: true,
-          pinSpacing: true,
-          anticipatePin: 1,
-          scrub: 0.6,
-          onUpdate: (self) => {
-            const raw = self.progress * capRows.length;
-            const idx = Math.max(
-              0,
-              Math.min(capRows.length - 1, Math.floor(raw))
-            );
-            capRows.forEach((r, i) =>
-              r.classList.toggle('is-active', i === idx)
-            );
-          }
-        }
-      });
-
-      capRows.forEach((row, i) => {
-        capTl.to(row, { y: 0, autoAlpha: 1, duration: 0.8 }, i * 0.8);
-      });
-      // Tail beat keeps the last row on screen before the pin releases
-      capTl.to({}, { duration: 0.6 });
-    } else {
-      // Mobile / reduced motion: keep rows statically lit
-      capRows.forEach((r) => r.classList.add('is-active'));
-    }
-
-    // --------------------------------------------------------------
-    // PROJECTS — marquee drift on scroll (scrubbed parallax)
-    // --------------------------------------------------------------
-    const marqueeTrack = document.querySelector('.projects__marquee-track');
-    if (marqueeTrack && !reduced) {
-      const trackWidth = marqueeTrack.scrollWidth;
-      gsap.to(marqueeTrack, {
-        x: () => -(trackWidth - window.innerWidth) * 0.5,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: '.projects__marquee',
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: 0.8
+          start: 'top 75%',
+          end: 'top 30%',
+          scrub: 0.6
         }
       });
     }
 
-    // Project card tilt/glow — tracks pointer for each card
-    document.querySelectorAll('.project-card').forEach((card) => {
-      card.addEventListener('pointermove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const mx = ((e.clientX - rect.left) / rect.width) * 100;
-        const my = ((e.clientY - rect.top) / rect.height) * 100;
-        card.style.setProperty('--mx', `${mx}%`);
-        card.style.setProperty('--my', `${my}%`);
+    // --------------------------------------------------------------
+    // PROJECTS — staggered card entrance
+    // --------------------------------------------------------------
+    const workCards = gsap.utils.toArray('.work-card');
+    if (workCards.length && !reduced) {
+      workCards.forEach((card, i) => {
+        gsap.from(card, {
+          y: 60,
+          autoAlpha: 0,
+          duration: 0.9,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 90%',
+            toggleActions: 'play none none none'
+          },
+          delay: (i % 3) * 0.1
+        });
       });
-    });
+    }
 
     // --------------------------------------------------------------
     // Refresh once fonts have loaded — serif metrics change layout

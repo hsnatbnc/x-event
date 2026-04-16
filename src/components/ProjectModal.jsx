@@ -87,13 +87,9 @@ export default function ProjectModal({ project, onClose }) {
       >
         <header className="pxmodal__head">
           <div>
-            <span className="pxmodal__code">{project.code}</span>
             <h2 id="pxmodal-title" className="pxmodal__title">
               {project.title}
             </h2>
-            <p id="pxmodal-desc" className="pxmodal__tagline">
-              {project.tagline}
-            </p>
           </div>
           <button
             ref={closeBtnRef}
@@ -119,11 +115,6 @@ export default function ProjectModal({ project, onClose }) {
 
         <footer className="pxmodal__foot">
           <p className="pxmodal__desc">{project.description}</p>
-          <ul className="pxmodal__subjects" aria-label="Subjects">
-            {project.subjects.map((s) => (
-              <li key={s}>{s}</li>
-            ))}
-          </ul>
         </footer>
       </div>
     </div>

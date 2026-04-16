@@ -6,7 +6,7 @@ const QUOTE = [
   'screen.',
   'We',
   'compose',
-  'it —',
+  'it',
   'scene',
   'by',
   'scene,',

@@ -602,6 +602,23 @@ body:has(.pxpage) .progress {
   transform: translateY(0);
 }
 
+.pxpanel__more {
+  display: inline;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-style: italic;
+  color: var(--px-ember);
+  cursor: pointer;
+  transition: color 0.3s var(--ease-out, ease);
+}
+
+.pxpanel__more:hover {
+  color: var(--px-bone);
+  text-decoration: underline;
+}
+
 .pxpanel__subjects {
   display: flex;
   flex-wrap: wrap;

@@ -322,9 +322,9 @@ export default function ProjectsPage() {
                   ref={(el) => (panelsRef.current[i] = el)}
                   className={`pxpanel ${i === 0 ? 'is-active' : ''}`}
                   style={{
-                    '--tint': p.palette[0],
-                    '--core': p.palette[1],
-                    '--glow': p.palette[2]
+                    '--tint': '#ff6b2c',
+                    '--core': '#1b0a04',
+                    '--glow': '#ffc48a'
                   }}
                 >
                   <button
@@ -341,20 +341,21 @@ export default function ProjectsPage() {
                     <div className="pxpanel__art-noise" />
                   </div>
                   <div className="pxpanel__meta">
-                    <div className="pxpanel__top">
-                      <span className="pxpanel__code">{p.code}</span>
-                      <span className="pxpanel__year">{p.year}</span>
-                    </div>
                     <h3 className="pxpanel__title">{p.title}</h3>
-                    <p className="pxpanel__tagline">
-                      <em>{p.tagline}</em>
+                    <p className="pxpanel__desc">
+                      {p.description.length > 90
+                        ? p.description.slice(0, 90) + '... '
+                        : p.description}
+                      {p.description.length > 90 && (
+                        <button
+                          type="button"
+                          className="pxpanel__more"
+                          onClick={() => setOpenProject(p)}
+                        >
+                          read more
+                        </button>
+                      )}
                     </p>
-                    <p className="pxpanel__desc">{p.description}</p>
-                    <ul className="pxpanel__subjects">
-                      {p.subjects.map((s) => (
-                        <li key={s}>{s}</li>
-                      ))}
-                    </ul>
                     <span className="pxpanel__cta" aria-hidden="true">
                       Play case study →
                     </span>

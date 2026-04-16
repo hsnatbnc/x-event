@@ -1,182 +1,79 @@
-// ---------------------------------------------------------------------------
-// The Archive — project entries for the /projects world.
-//
-// Each project is a capsule: a handful of legible facts plus a color palette
-// used as its "artwork" on the orbiting panel. `youtube` is the id that opens
-// in the modal (replace with real case-study videos when available).
-//
-// Palette format: [tint, core, glow] — tint wraps the panel edge, core paints
-// the body, glow emits from behind. Keep them in the same hue family per
-// project so the cylinder reads as a gradient catalog as you scroll.
-// ---------------------------------------------------------------------------
-
 export const PROJECTS = [
   {
-    id: 'ai-launch',
-    code: 'AX / 001',
-    title: 'AI Launch Experience',
-    tagline: 'A product becomes a presence.',
+    id: 'michelin-plaque',
+    title: 'Michelin Turkey Plaque Ceremony',
     description:
-      'Full-bleed launch story for a frontier AI platform. Scroll-led cinematics frame the product as an inevitable force — not a tool, an atmosphere.',
-    subjects: ['Concept', 'Art direction', 'WebGL', 'Motion'],
-    year: '2025',
-    palette: ['#8a5cff', '#2a1557', '#c89bff'],
-    youtube: 'aqz-KE-bpKQ'
+      'Since 2023, X Event has been proudly delivering the full scope of the Michelin Turkey Plaque Ceremony — from invitation to event planning, stage design and production — hosted at Gastronometro and sponsored by Metro T\u00FCrkiye.',
+    youtube: 'Rm30V2DpnCc'
   },
   {
-    id: 'heritage',
-    code: 'AX / 002',
-    title: 'Heritage Brand Platform',
-    tagline: 'Craft, in the future tense.',
+    id: 'bff-anniversary',
+    title: '10th BFF Anniversary "An Idea Festival"',
     description:
-      'A modern re-framing of an old-world craft house. Editorial typography, archival layers, and quiet shader atmospherics hold the brand between library and laboratory.',
-    subjects: ['Brand', 'Web design', '3D', 'Development'],
-    year: '2024',
-    palette: ['#e8a95a', '#2b1a08', '#ffd69a'],
-    youtube: 'ScMzIvxBSi4'
+      'We delivered the full-scale production of the festival\u2019s 10th anniversary night, managing every element from stage design and speaker coordination to sound, lighting, music, and the overall guest experience.',
+    youtube: 'AbllUzhV34s'
   },
   {
-    id: 'ai-showcase',
-    code: 'AX / 003',
-    title: 'AI Product Showcase',
-    tagline: 'A clean, future-facing object room.',
+    id: 'metro-local-values',
+    title: 'Metro Local Values Project',
     description:
-      'A sleek product site for an intelligent platform. Spatial product portraits, precise copy, and responsive WebGL moments built around a story of trust and power.',
-    subjects: ['Concept', 'Web design', 'WebGL', '3D design'],
-    year: '2024',
-    palette: ['#6ef0ff', '#061820', '#a8f6ff'],
-    youtube: 'jNQXAC9IVRw'
+      'We organized press trips across nearly 20 cities in T\u00FCrkiye. We delivered end-to-end services including logistics, transportation, production, accommodation \u2014 ensuring a seamless and well-curated experience in every location.',
+    youtube: 'Z8aYqqkJL34'
   },
   {
-    id: 'luxury-film',
-    code: 'AX / 004',
-    title: 'Luxury Motion Film',
-    tagline: 'Four acts. One engine. No shortcuts.',
+    id: 'golazo-opening',
+    title: 'Golazo Opening Show \u2013 \u00C7akal',
     description:
-      'CG-driven short film for a premium automotive campaign. A four-stage visual journey told through digital art, motion design and cinematic compositing — built for large-format rooms.',
-    subjects: ['Creative concept', '3D design', 'Motion', 'Compositing'],
-    year: '2024',
-    palette: ['#ff6b2c', '#1b0a04', '#ffc48a'],
-    youtube: 'aqz-KE-bpKQ'
+      'We delivered the opening performance of Golazo featuring \u00C7akal, integrating AI-powered visual design with ghost screen and floor mapping. From pre-production to real-time mapping execution, we created a seamless and immersive show experience.',
+    youtube: 'OgxxbN-jR1c'
   },
   {
-    id: 'synthetic-human',
-    code: 'AX / 005',
-    title: 'Synthetic Human Interface',
-    tagline: 'A face you can speak to.',
+    id: 'golazo-press',
+    title: 'Golazo T\u00FCrkiye Press Conference',
     description:
-      'A real-time conversational interface for a synthetic presenter. Built with facial capture, procedural lighting and a custom voice-reactive shader core.',
-    subjects: ['R&D', 'Real-time 3D', 'Shader', 'Interaction'],
-    year: '2025',
-    palette: ['#ff3ebf', '#22061d', '#ffa8e0'],
-    youtube: 'ScMzIvxBSi4'
+      'We delivered the press conference of Golazo T\u00FCrkiye, bringing together some of the most renowned celebrities and football players from T\u00FCrkiye and around the world. From production to full event execution, we ensured a seamless and high-impact experience.',
+    youtube: '-zTYDg96aLk'
   },
   {
-    id: 'conference',
-    code: 'AX / 006',
-    title: 'Conference Digital Experience',
-    tagline: 'A building-scale welcome.',
+    id: 'metro-learning',
+    title: 'Metro Learning & Development Festival',
     description:
-      'Generative stage content, speaker packages and an on-site web companion for a technology conference. One visual language across 30,000 sqm and a phone in your pocket.',
-    subjects: ['Creative direction', 'Stage content', 'Web', 'Motion'],
-    year: '2024',
-    palette: ['#b85c38', '#120a06', '#f7b27b'],
-    youtube: 'jNQXAC9IVRw'
+      'In collaboration with Metro\u2019s HR team, we delivered the Learning & Development Festival for the third time. Over three days, we brought together leading keynote speakers and industry experts, supported by full-scale production and live streaming infrastructure. The festival concluded with an engaging experience day featuring interactive zones and activities.',
+    youtube: '4MCJxDHpaIM'
   },
   {
-    id: 'web3-market',
-    code: 'AX / 007',
-    title: 'Web3 Marketplace Platform',
-    tagline: 'A gallery for the chain.',
+    id: 'gastronometro-10',
+    title: 'Gastronometro 10th Anniversary',
     description:
-      'A marketplace rebuilt as an exhibition — infinite spatial grid, reactive previews, and a calm, archival tone that lets the work be the loudest thing in the room.',
-    subjects: ['Product design', 'WebGL', 'Development', 'Brand'],
-    year: '2024',
-    palette: ['#7d8bff', '#0a0e2a', '#c2c9ff'],
-    youtube: 'aqz-KE-bpKQ'
+      'We delivered the full production of Gastronometro\u2019s 10th anniversary celebration \u2014 including sound, lighting, stage design, artist management, and transportation. Every detail was seamlessly executed to create a refined and memorable experience.',
+    youtube: '008SFJ5s7aw'
   },
   {
-    id: 'play-world',
-    code: 'AX / 008',
-    title: 'Interactive Play World',
-    tagline: 'A room children redraw by moving.',
+    id: 'istanbul-summit',
+    title: '\u0130stanbul Geographical Indicated Product Summit',
     description:
-      'A permanent interactive installation for a family space. Floor projection, motion capture and particle choreography, tuned to turn running into drawing.',
-    subjects: ['Installation', 'Real-time', 'Projection', 'Interaction'],
-    year: '2023',
-    palette: ['#6ef0ff', '#04121c', '#d5f8ff'],
-    youtube: 'ScMzIvxBSi4'
+      'We are proud to design and deliver the Istanbul Geographical Indications Summit at Gastronometro, hosted by Metro T\u00FCrkiye \u2014 bringing together industry professionals from around the world in a truly international event experience.',
+    youtube: 'Cic33PXI9qA'
   },
   {
-    id: 'tech-brand',
-    code: 'AX / 009',
-    title: 'Technology Brand Launch',
-    tagline: 'Hardware, announced like a film.',
+    id: 'metro-sales',
+    title: 'Metro T\u00FCrkiye Sales Summit Series',
     description:
-      'A launch site and film package for a consumer hardware brand. Synced cinematics, product cutaways, spec reveals — the whole beat sheet of a theatrical debut.',
-    subjects: ['Launch', 'Web', 'Motion', 'Film'],
-    year: '2024',
-    palette: ['#e8e4d5', '#121212', '#ffffff'],
-    youtube: 'aqz-KE-bpKQ'
+      'We successfully delivered five large-scale sales meetings, bringing together Metro T\u00FCrkiye\u2019s sales teams. The end-to-end organization covered accommodation, stage design, sound & lighting, speaker and host management, as well as all transfer operations.',
+    youtube: 'IWtmk9QFzx8'
   },
   {
-    id: 'spatial-fusion',
-    code: 'AX / 010',
-    title: 'Spatial Fusion Experience',
-    tagline: 'Rooms that answer back.',
+    id: 'hrant-dink',
+    title: 'Hrant Dink Memorial Awards Ceremony',
     description:
-      'A brand residency built around sensor-driven spatial states. The room reads its guests and shifts light, sound, and story beats — a living exhibit.',
-    subjects: ['Spatial', 'Real-time', 'Sensor fusion', 'Sound'],
-    year: '2025',
-    palette: ['#c9401a', '#150603', '#ffa472'],
-    youtube: 'jNQXAC9IVRw'
+      'We delivered the full production of the Hrant Dink Memorial Awards Ceremony, managing the entire evening from concept to execution. From stage design, lighting, and sound to show flow and live direction, every element was carefully crafted to honor the significance of the event with a refined and seamless experience.',
+    youtube: 'G5Fkf9fYiHw'
   },
   {
-    id: 'data-globe',
-    code: 'AX / 011',
-    title: 'Interactive Data Globe',
-    tagline: 'A planet of signals.',
+    id: 'winterhalter',
+    title: 'Winterhalter Factory Tour & Gala Night',
     description:
-      'A browser-native globe for a global logistics brand. Millions of GPU-instanced data points, streaming updates, and a calm cartographic art direction.',
-    subjects: ['Data viz', 'WebGL', 'GPU compute', 'Product'],
-    year: '2024',
-    palette: ['#8a5cff', '#0a0620', '#d4c2ff'],
-    youtube: 'ScMzIvxBSi4'
-  },
-  {
-    id: 'x-lab',
-    code: 'AX / 012',
-    title: 'X Event Lab Platform',
-    tagline: 'Our own weather system.',
-    description:
-      'Our internal R&D platform — a dedicated space for ongoing research, new technical ideas and future-facing creative exploration, opened up for clients and partners.',
-    subjects: ['Concept', 'Web design', 'WebGL', '3D design'],
-    year: '2025',
-    palette: ['#ff6b2c', '#1a0903', '#ffd6b0'],
-    youtube: 'aqz-KE-bpKQ'
-  },
-  {
-    id: 'storybook',
-    code: 'AX / 013',
-    title: 'Storybook Experience',
-    tagline: 'A children’s book you walk through.',
-    description:
-      'An illustrated, scroll-led micro-site for a publishing house. Hand-drawn art layered into a parallax diorama, paced like a bedtime reading.',
-    subjects: ['Art direction', 'Illustration', 'Web', 'Motion'],
-    year: '2023',
-    palette: ['#f5d9a8', '#1e150a', '#ffffff'],
-    youtube: 'jNQXAC9IVRw'
-  },
-  {
-    id: 'ar-beverage',
-    code: 'AX / 014',
-    title: 'AR Beverage Activation',
-    tagline: 'Pour. Point. Portal.',
-    description:
-      'A global AR activation around a drink label. Image-tracked portals, generative label worlds, and a mechanic designed to live inside the fridge-aisle moment.',
-    subjects: ['AR', 'Realtime 3D', 'Brand', 'Campaign'],
-    year: '2024',
-    palette: ['#ff3ebf', '#1c051a', '#ffb4e0'],
-    youtube: 'aqz-KE-bpKQ'
+      'Under the umbrella of Akt\u00FCrk, we organized the Winterhalter factory tour alongside an exclusive gala evening. From logistics and guest experience to full event production, we delivered a seamless and refined program throughout.',
+    youtube: 'gR39BYzQccw'
   }
 ];

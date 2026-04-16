@@ -250,10 +250,13 @@ export default function AtmosphereCanvas({ progressRef }) {
           col += accent * glow;
 
           // --- XE mark — moon behind drifting smoke clouds ----------------
-          // Only blended into the hero act; the logo fades out as the next
-          // scene takes over so later sections stay pure atmosphere.
-          float heroWeight = 1.0 - smoothstep(0.0, 0.16, uProgress);
-          if (uLogoReady > 0.5 && heroWeight > 0.001) {
+          // Visible in the hero and contact acts; fades out for the middle
+          // journey so later sections stay pure atmosphere, then returns
+          // as the closing scene bookends the opening.
+          float heroWeight    = 1.0 - smoothstep(0.0, 0.16, uProgress);
+          float contactWeight = smoothstep(0.85, 0.95, uProgress);
+          float logoWeight    = max(heroWeight, contactWeight);
+          if (uLogoReady > 0.5 && logoWeight > 0.001) {
             // Very slow scale breathing so the mark feels like it's drifting
             // through depth rather than sitting flat.
             float drift = 1.0
@@ -261,9 +264,11 @@ export default function AtmosphereCanvas({ progressRef }) {
               + sin(uTime * 0.061 + 1.3) * 0.006 * uIntensity;
 
             // Place the logo in the optical center.
+            // Contact section renders at 60% of hero size.
+            float sizeScale = mix(1.0, 0.6, contactWeight);
             vec2 center = vec2(0.5, 0.5);
             vec2 pxOff = (uv - center) * uResolution;
-            float targetW = min(uResolution.x * 0.46, 760.0) * drift;
+            float targetW = min(uResolution.x * 0.46, 760.0) * drift * sizeScale;
             float targetH = (targetW / uLogoAspect);
             vec2 logoUv = pxOff / vec2(targetW, targetH) + 0.5;
 
@@ -312,9 +317,9 @@ export default function AtmosphereCanvas({ progressRef }) {
             vec3 moonGlow = vec3(1.00, 0.42, 0.14);
             vec3 moonDeep = vec3(0.55, 0.16, 0.05);
 
-            float softVis = coreOcc * heroWeight;
-            float glowVis = glowOcc * heroWeight * 0.95;
-            float haloVis = haloOcc * heroWeight * 0.7;
+            float softVis = coreOcc * logoWeight;
+            float glowVis = glowOcc * logoWeight * 0.95;
+            float haloVis = haloOcc * logoWeight * 0.7;
 
             // Layer the three passes: broad halo, mid bloom, soft core.
             col += moonDeep * haloA * haloVis * 0.55;
@@ -324,7 +329,7 @@ export default function AtmosphereCanvas({ progressRef }) {
             // Backlit smoke: where cloud sits over the halo, paint a warm
             // rim into the cloud itself so the smoke reads as moonlit
             // vapour, not a black void crossing the disc.
-            float backLight = haloA * cover * heroWeight;
+            float backLight = haloA * cover * logoWeight;
             col += moonGlow * backLight * 0.22;
           }
 
