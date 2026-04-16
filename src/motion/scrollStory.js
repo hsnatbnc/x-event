@@ -187,7 +187,7 @@ export default function setupScrollStory({ progressRef }) {
         ease: 'none',
         stagger: { each: 0.05, from: 'start' },
         scrollTrigger: {
-          trigger: '.manifesto',
+          trigger: '.manifesto__track',
           start: 'top 80%',
           end: 'bottom 70%',
           scrub: 0.6

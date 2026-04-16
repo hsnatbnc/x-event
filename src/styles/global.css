@@ -26,6 +26,7 @@ html {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
 }
 
 body {
@@ -288,8 +289,16 @@ button {
 .scene {
   position: relative;
   padding: var(--section-y) var(--gutter);
-  min-height: 100vh;
+  min-height: 100svh;
   isolation: isolate;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+/* Manifesto uses a sticky-inside-track pattern — snap to the track
+   (the real scroll entry point), not the sticky child itself. */
+.manifesto.scene {
+  scroll-snap-align: none;
 }
 
 .scene__inner {
@@ -344,7 +353,7 @@ button {
   will-change: opacity;
 }
 
-/* reduced motion: show everything instantly */
+/* reduced motion: show everything instantly, disable scroll snap */
 @media (prefers-reduced-motion: reduce) {
   .js-mask > span,
   .js-rise,
@@ -355,6 +364,7 @@ button {
   }
   html {
     scroll-behavior: auto;
+    scroll-snap-type: none;
   }
 }
 
@@ -362,18 +372,21 @@ button {
    HERO — Scene 01
 ------------------------------------------------------------- */
 .hero {
-  min-height: 100vh;
-  padding-top: clamp(8rem, 16vh, 14rem);
-  padding-bottom: 8rem;
+  height: 100svh;
+  min-height: 100svh;
+  padding-top: 0;
+  padding-bottom: 0;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 }
 
 .hero__inner {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: clamp(2rem, 5vh, 4rem);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top: clamp(8rem, 16vh, 14rem);
+  padding-bottom: clamp(2rem, 5vh, 4rem);
 }
 
 .hero__eyebrow {
@@ -407,7 +420,6 @@ button {
   grid-template-columns: 1fr;
   gap: 2rem;
   align-items: end;
-  padding-top: clamp(3rem, 8vh, 6rem);
 }
 
 .hero__tag {
@@ -468,15 +480,32 @@ button {
 /* -------------------------------------------------------------
    MANIFESTO — Scene 02 (scrub reveal)
 ------------------------------------------------------------- */
-.manifesto {
+.manifesto__track {
+  position: relative;
   min-height: 150vh;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+.manifesto {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  min-height: 100svh;
+  padding-top: 0;
+  padding-bottom: 0;
   display: flex;
-  align-items: center;
+  flex-direction: column;
 }
 
 .manifesto__inner {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top: clamp(6rem, 12vh, 10rem);
+  padding-bottom: clamp(2rem, 5vh, 4rem);
   max-width: 1200px;
-  margin: 0 auto;
 }
 
 .manifesto__quote {
@@ -502,7 +531,6 @@ button {
 }
 
 .manifesto__footnote {
-  margin-top: clamp(2.5rem, 5vw, 4rem);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -604,13 +632,13 @@ button {
    CAPABILITIES — Scene 04 (pinned)
 ------------------------------------------------------------- */
 .capabilities {
-  min-height: 100vh;
+  min-height: 100svh;
   padding: 0;
 }
 
 .cap-pin {
   position: relative;
-  min-height: 100vh;
+  min-height: 100svh;
   padding: var(--section-y) var(--gutter);
   overflow: hidden;
 }
@@ -923,17 +951,28 @@ button {
    CONTACT — Scene 06 (closing)
 ------------------------------------------------------------- */
 .contact {
-  min-height: 100vh;
+  height: 100svh;
+  min-height: 100svh;
+  padding-top: 0;
+  padding-bottom: 0;
   display: flex;
-  align-items: center;
-  padding-bottom: clamp(4rem, 8vw, 8rem);
+  flex-direction: column;
 }
 
 .contact__inner {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top: clamp(6rem, 12vh, 10rem);
+  padding-bottom: clamp(2rem, 5vh, 4rem);
+  width: 100%;
+}
+
+.contact__body {
   display: grid;
   grid-template-columns: 1fr;
   gap: clamp(2.5rem, 5vw, 4rem);
-  width: 100%;
 }
 
 .contact__kicker {
@@ -1024,7 +1063,7 @@ button {
 }
 
 @media (min-width: 900px) {
-  .contact__inner {
+  .contact__body {
     grid-template-columns: 1.1fr 0.9fr;
     align-items: start;
     gap: clamp(3rem, 5vw, 5rem);
@@ -1035,8 +1074,6 @@ button {
 }
 
 .contact__foot {
-  grid-column: 1 / -1;
-  margin-top: clamp(4rem, 8vw, 6rem);
   padding-top: 1.5rem;
   border-top: 1px solid var(--hairline);
   display: flex;

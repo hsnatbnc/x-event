@@ -25,23 +25,25 @@ const QUOTE = [
 
 export default function Manifesto() {
   return (
-    <section id="manifesto" className="scene manifesto" aria-label="Manifesto">
-      <p className="scene__marker">
-        <span>02</span>&nbsp;/&nbsp;Manifesto
-      </p>
-      <div className="scene__inner manifesto__inner">
-        <p className="manifesto__quote" aria-label={QUOTE.join(' ')}>
-          {QUOTE.map((w, i) => (
-            <span className="word" key={i}>
-              {w}&nbsp;
-            </span>
-          ))}
+    <div className="manifesto__track">
+      <section id="manifesto" className="scene manifesto" aria-label="Manifesto">
+        <p className="scene__marker">
+          <span>02</span>&nbsp;/&nbsp;Manifesto
         </p>
-        <div className="manifesto__footnote">
-          <span className="js-fade">A brand film in six scenes</span>
-          <span className="js-fade">Read slowly</span>
+        <div className="scene__inner manifesto__inner">
+          <p className="manifesto__quote" aria-label={QUOTE.join(' ')}>
+            {QUOTE.map((w, i) => (
+              <span className="word" key={i}>
+                {w}&nbsp;
+              </span>
+            ))}
+          </p>
+          <div className="manifesto__footnote">
+            <span className="js-fade">A brand film in six scenes</span>
+            <span className="js-fade">Read slowly</span>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 }
