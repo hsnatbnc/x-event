@@ -139,77 +139,60 @@ export default function AtmosphereCanvas({ progressRef }) {
           return s;
         }
 
-        // palette mixing — five "acts" in the scroll journey
+        // palette mixing — six "acts" in the scroll journey
         vec3 palette(float p, float tm) {
-          // 00 hero — deep ink + slowly cycling blue / red / purple accent.
-          // The three stops are tuned to near-equal luminance so the smoke
-          // keeps the same contrast as the eye moves through the hues — only
-          // the *temperature* of the scene shifts, never its weight.
-          vec3 heroBlue   = vec3(0.18, 0.40, 1.00);
-          vec3 heroRed    = vec3(1.00, 0.22, 0.30);
-          vec3 heroOrange = vec3(1.00, 0.42, 0.17);
+          // 00 hero — blue #1c43a5 (same as manifesto, continuous blue field)
+          vec3 heroAccent = vec3(0.11, 0.26, 0.65);
 
-          // ~30s full loop (cyc = tm * 0.033 → period ≈ 30s). Three equal
-          // thirds with smoothstep easing on each leg so transitions slow-in
-          // and slow-out rather than clipping between colors.
-          float phase = fract(tm * 0.033);
-          vec3 heroAccent;
-          if (phase < 0.3333) {
-            heroAccent = mix(heroOrange, heroRed,    smoothstep(0.0,    0.3333, phase));
-          } else if (phase < 0.6666) {
-            heroAccent = mix(heroRed,    heroBlue,   smoothstep(0.3333, 0.6666, phase));
-          } else {
-            heroAccent = mix(heroBlue,   heroOrange, smoothstep(0.6666, 1.0,    phase));
-          }
-
-          // Tint the dark base a hair toward the current hero hue so the
-          // shadows and highlights belong to the same world.
+          // Tint the dark base toward blue.
           vec3 ink   = vec3(0.022, 0.026, 0.042) + heroAccent * 0.018;
-          vec3 coal  = heroAccent * 0.35;
           vec3 ember = heroAccent;
 
-          // 01 manifesto — quiet steel
+          // 01 manifesto — blue #1c43a5
+          vec3 blue1 = vec3(0.02,  0.03,  0.065);
+          vec3 blue2 = vec3(0.11,  0.26,  0.65);
+
+          // 02 studio — green #84f354
+          vec3 grn1  = vec3(0.025, 0.05,  0.02);
+          vec3 grn2  = vec3(0.52,  0.95,  0.33);
+
+          // 03 capabilities — orange #e06537
+          vec3 org1  = vec3(0.055, 0.03,  0.02);
+          vec3 org2  = vec3(0.88,  0.40,  0.22);
+
+          // 04 projects — blue #1c43a5
+          vec3 proj1 = vec3(0.02,  0.03,  0.065);
+          vec3 proj2 = vec3(0.11,  0.26,  0.65);
+
+          // 05 contact — quiet steel
           vec3 steel1 = vec3(0.035, 0.045, 0.065);
           vec3 steel2 = vec3(0.12,  0.12,  0.16);
 
-          // 02 studio — warm umber
-          vec3 umber1 = vec3(0.06,  0.045, 0.035);
-          vec3 umber2 = vec3(0.55,  0.24,  0.09);
-
-          // 03 capabilities — midnight graphite
-          vec3 graph1 = vec3(0.03,  0.035, 0.05);
-          vec3 graph2 = vec3(0.22,  0.14,  0.28);
-
-          // 04 projects — amber horizon
-          vec3 amber1 = vec3(0.05,  0.04,  0.055);
-          vec3 amber2 = vec3(0.85,  0.52,  0.18);
-
-          // 05 contact — calm dusk
-          vec3 dusk1  = vec3(0.04,  0.035, 0.05);
-          vec3 dusk2  = vec3(0.92,  0.38,  0.14);
-
           // blend based on progress (0..1) across six acts
           vec3 base, accent;
-          if (p < 0.18) {
-            float t = smoothstep(0.0, 0.18, p);
-            base   = mix(ink,    steel1, t);
-            accent = mix(ember,  steel2, t);
-          } else if (p < 0.38) {
-            float t = smoothstep(0.18, 0.38, p);
-            base   = mix(steel1, umber1, t);
-            accent = mix(steel2, umber2, t);
-          } else if (p < 0.6) {
-            float t = smoothstep(0.38, 0.6, p);
-            base   = mix(umber1, graph1, t);
-            accent = mix(umber2, graph2, t);
-          } else if (p < 0.82) {
-            float t = smoothstep(0.6, 0.82, p);
-            base   = mix(graph1, amber1, t);
-            accent = mix(graph2, amber2, t);
+          if (p < 0.17) {
+            float t = smoothstep(0.0, 0.17, p);
+            base   = mix(ink,   blue1, t);
+            accent = mix(ember, blue2, t);
+          } else if (p < 0.34) {
+            float t = smoothstep(0.17, 0.34, p);
+            base   = mix(blue1, grn1, t);
+            accent = mix(blue2, grn2, t);
+          } else if (p < 0.51) {
+            float t = smoothstep(0.34, 0.51, p);
+            base   = mix(grn1,  org1, t);
+            accent = mix(grn2,  org2, t);
+          } else if (p < 0.68) {
+            float t = smoothstep(0.51, 0.68, p);
+            base   = mix(org1,  proj1, t);
+            accent = mix(org2,  proj2, t);
+          } else if (p < 0.85) {
+            float t = smoothstep(0.68, 0.85, p);
+            base   = mix(proj1, steel1, t);
+            accent = mix(proj2, steel2, t);
           } else {
-            float t = smoothstep(0.82, 1.0, p);
-            base   = mix(amber1, dusk1, t);
-            accent = mix(amber2, dusk2, t);
+            base   = steel1;
+            accent = steel2;
           }
 
           return base + accent;
@@ -286,51 +269,58 @@ export default function AtmosphereCanvas({ progressRef }) {
             // A second noise layer that physically sweeps across the moon.
             // Keeping it at 2 noise() taps (not full fbm) so we don't blow
             // the per-pixel cost in the heaviest part of the shader.
-            float ct = uTime * 0.05 * uIntensity;
+            float ct = uTime * 0.018 * uIntensity;
             vec2 cloudUv = p;
-            float drift1 = noise(cloudUv * 2.7  + vec2(-ct,         ct * 0.30));
-            float drift2 = noise(cloudUv * 5.3  + vec2(-ct * 0.55, -ct * 0.18) + vec2(3.1, 2.3));
+            float drift1 = noise(cloudUv * 1.8  + vec2(-ct,         ct * 0.25));
+            float drift2 = noise(cloudUv * 3.2  + vec2(-ct * 0.45, -ct * 0.15) + vec2(3.1, 2.3));
             // Blend with the background fbm so passing clouds still belong
             // to the same atmosphere — they're not a foreign overlay layer.
             float cloudField = f * 0.55 + (drift1 * 0.65 + drift2 * 0.35) * 0.55;
 
-            // Slow weather front (~14s period). Low weather = thick cover,
-            // high weather = clear sky. The threshold range crosses zero so
-            // peak coverage genuinely buries the moon end-to-end, and peak
-            // clearing fully reveals it.
-            float weatherRaw = sin(uTime * 0.45 + 0.3) * 0.5 + 0.5;
-            weatherRaw += sin(uTime * 0.17 + 1.7) * 0.05;
-            float weather = clamp(weatherRaw, 0.0, 1.0);
+            // Weather cycle (~10s). Controls how much cloud the
+            // noise field pushes over the logo. The smoothstep
+            // easing removes any stall at the peaks.
+            // ~25s full weather cycle. Square root skews the wave
+            // so it lingers in the clear phase (~17s visible) and
+            // passes through the hidden dip quickly (~8s).
+            float weatherSin = sin(uTime * 0.25) * 0.5 + 0.5;
+            float weather = smoothstep(0.0, 1.0, sqrt(weatherSin));
             weather = mix(0.55, weather, uIntensity);
-            float threshold = mix(-0.10, 0.55, weather);
-            float cover = smoothstep(threshold, threshold + 0.32, cloudField);
 
-            // Per-layer occlusion — thick smoke hides the disc completely
-            // but the outer halo bleeds through (atmospheric scatter), so
-            // even at full cover you sense a warm presence behind the cloud.
+            // Threshold driven by weather — this is what makes
+            // actual cloud shapes drift across the logo rather
+            // than a flat global fade.
+            // Low weather  → threshold low  → most noise passes → thick clouds
+            // High weather → threshold high → less noise passes → thinner clouds
+            float threshold = mix(-0.15, 0.38, weather);
+            float cover = smoothstep(threshold, threshold + 0.45, cloudField);
+
+            // Floor: 10-20% cloud always lingers (peak visibility ~80-90%).
+            // Ceiling: 1.0 — clouds fully bury the mark, nothing bleeds.
+            cover = clamp(cover, 0.12, 1.0);
+
             float coreOcc = 1.0 - cover;
-            float glowOcc = 1.0 - cover * 0.88;
-            float haloOcc = 1.0 - cover * 0.55;
+            float glowOcc = 1.0 - cover;
+            float haloOcc = 1.0 - cover;
 
-            // Ember palette — warm moon core + deeper coal halo.
-            vec3 moonCore = vec3(1.00, 0.66, 0.34);
-            vec3 moonGlow = vec3(1.00, 0.42, 0.14);
-            vec3 moonDeep = vec3(0.55, 0.16, 0.05);
+            // Subdued moon — visible but never blown-out white.
+            vec3 moonCore = vec3(0.55, 0.58, 0.70);
+            vec3 moonGlow = vec3(0.40, 0.42, 0.55);
+            vec3 moonDeep = vec3(0.22, 0.22, 0.30);
 
             float softVis = coreOcc * logoWeight;
-            float glowVis = glowOcc * logoWeight * 0.95;
-            float haloVis = haloOcc * logoWeight * 0.7;
+            float glowVis = glowOcc * logoWeight * 0.85;
+            float haloVis = haloOcc * logoWeight * 0.55;
 
             // Layer the three passes: broad halo, mid bloom, soft core.
-            col += moonDeep * haloA * haloVis * 0.55;
-            col += moonGlow * glowA * glowVis * 0.85;
-            col = mix(col, col + moonCore * 1.35, softA * softVis * 0.78);
+            col += moonDeep * haloA * haloVis * 0.45;
+            col += moonGlow * glowA * glowVis * 0.65;
+            col = mix(col, col + moonCore * 0.8, softA * softVis * 0.6);
 
-            // Backlit smoke: where cloud sits over the halo, paint a warm
-            // rim into the cloud itself so the smoke reads as moonlit
-            // vapour, not a black void crossing the disc.
-            float backLight = haloA * cover * logoWeight;
-            col += moonGlow * backLight * 0.22;
+            // Faint backlit rim — just enough warmth to sense
+            // the mark's presence even when nearly buried.
+            float backLight = haloA * cover * logoWeight * (1.0 - cover);
+            col += moonGlow * backLight * 0.18;
           }
 
           // vignette — pulls the eye toward center content
