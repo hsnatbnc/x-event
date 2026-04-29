@@ -75,5 +75,19 @@ export const PROJECTS = [
     description:
       'Under the umbrella of Akt\u00FCrk, we organized the Winterhalter factory tour alongside an exclusive gala evening. From logistics and guest experience to full event production, we delivered a seamless and refined program throughout.',
     youtube: 'gR39BYzQccw'
+  },
+  {
+    id: 'migros-summer-closing',
+    title: 'Migros Summer Closing Party',
+    description:
+      'A vibrant summer closing celebration for Migros employees, featuring interactive games, live stage production, and a relaxed picnic-style experience. From sound and lighting to overall event flow, we created a fun and engaging atmosphere to wrap up the season.',
+    youtube: 'KS63FCKGGLQ'
+  },
+  {
+    id: 'golazo-arena',
+    title: 'Golazo Arena Experience',
+    description:
+      'Full operation of the Golazo event, delivering an immersive experience with mapping stage design, live performances, large-scale show moments, and floor applications. From artist coordination and guest management to transfers and end-to-end production, every detail was seamlessly executed.',
+    youtube: 'cH55nfn7T5A'
   }
 ];

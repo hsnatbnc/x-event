@@ -132,6 +132,7 @@ button {
   inset: 0;
   width: 100vw;
   height: 100vh;
+  height: 100dvh;
   z-index: 0;
   pointer-events: none;
 }
@@ -278,6 +279,188 @@ button {
   }
 }
 
+/* --- Mobile burger button ----------------------------------- */
+.nav__burger {
+  display: none;
+  position: relative;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  background: rgba(11, 13, 18, 0.45);
+  border: 1px solid var(--hairline-strong);
+  border-radius: 999px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 70;
+  transition: background 0.4s var(--ease-out), border-color 0.4s var(--ease-out);
+}
+
+.nav__burger span {
+  position: absolute;
+  left: 50%;
+  width: 18px;
+  height: 1.5px;
+  margin-left: -9px;
+  background: var(--bone);
+  border-radius: 1px;
+  transition: transform 0.45s var(--ease-out), opacity 0.3s var(--ease-out),
+    top 0.45s var(--ease-out);
+}
+
+.nav__burger span:nth-child(1) {
+  top: 15px;
+}
+.nav__burger span:nth-child(2) {
+  top: 21px;
+}
+.nav__burger span:nth-child(3) {
+  top: 27px;
+}
+
+.nav__burger.is-open {
+  background: rgba(255, 107, 44, 0.12);
+  border-color: var(--ember);
+}
+
+.nav__burger.is-open span:nth-child(1) {
+  top: 21px;
+  transform: rotate(45deg);
+}
+.nav__burger.is-open span:nth-child(2) {
+  opacity: 0;
+}
+.nav__burger.is-open span:nth-child(3) {
+  top: 21px;
+  transform: rotate(-45deg);
+}
+
+@media (max-width: 640px) {
+  .nav__burger {
+    display: block;
+  }
+}
+
+/* --- Mobile overlay menu ------------------------------------ */
+.nav__mobile {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2.5rem;
+  padding: clamp(5rem, 14vh, 8rem) var(--gutter) clamp(2.5rem, 8vh, 5rem);
+  background: linear-gradient(
+    180deg,
+    rgba(6, 7, 12, 0.96) 0%,
+    rgba(10, 12, 22, 0.98) 100%
+  );
+  backdrop-filter: blur(24px) saturate(140%);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(-1rem);
+  transition: opacity 0.45s var(--ease-out), transform 0.5s var(--ease-out),
+    visibility 0s linear 0.5s;
+}
+
+.nav__mobile.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+  transition: opacity 0.45s var(--ease-out), transform 0.5s var(--ease-out),
+    visibility 0s linear 0s;
+}
+
+.nav__mobile-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  width: 100%;
+}
+
+.nav__mobile-links a {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.25rem, 9vw, 3.25rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--bone);
+  padding: 0.25rem 0;
+  border-bottom: 1px solid var(--hairline);
+  transform: translateY(20px);
+  opacity: 0;
+  transition: color 0.4s var(--ease-out), transform 0.6s var(--ease-out),
+    opacity 0.5s var(--ease-out);
+}
+
+.nav__mobile.is-open .nav__mobile-links a {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.nav__mobile.is-open .nav__mobile-links a:nth-child(1) {
+  transition-delay: 0.08s;
+}
+.nav__mobile.is-open .nav__mobile-links a:nth-child(2) {
+  transition-delay: 0.14s;
+}
+.nav__mobile.is-open .nav__mobile-links a:nth-child(3) {
+  transition-delay: 0.2s;
+}
+.nav__mobile.is-open .nav__mobile-links a:nth-child(4) {
+  transition-delay: 0.26s;
+}
+
+.nav__mobile-links a:active,
+.nav__mobile-links a:hover {
+  color: var(--ember);
+}
+
+.nav__mobile-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 1rem 1.5rem;
+  border: 1px solid var(--hairline-strong);
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: var(--t-mono);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--bone);
+  background: rgba(255, 107, 44, 0.08);
+  transform: translateY(20px);
+  opacity: 0;
+  transition: opacity 0.5s var(--ease-out) 0.34s,
+    transform 0.6s var(--ease-out) 0.34s, background 0.4s var(--ease-out),
+    border-color 0.4s var(--ease-out), color 0.4s var(--ease-out);
+}
+
+.nav__mobile.is-open .nav__mobile-cta {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.nav__mobile-cta:active,
+.nav__mobile-cta:hover {
+  background: var(--ember);
+  border-color: var(--ember);
+  color: var(--ink-0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav__mobile,
+  .nav__mobile-links a,
+  .nav__mobile-cta {
+    transition: opacity 0.2s linear, visibility 0s linear !important;
+    transform: none !important;
+  }
+}
+
 /* -------------------------------------------------------------
    Story layout + shared section scaffolding
 ------------------------------------------------------------- */
@@ -416,6 +599,7 @@ button {
 }
 
 .hero__footer {
+  margin-top: auto;
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
@@ -562,6 +746,15 @@ button {
 /* -------------------------------------------------------------
    EVENT ECOSYSTEM — Scene 03
 ------------------------------------------------------------- */
+.eventecosystem::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(4, 5, 9, 0.62);
+  pointer-events: none;
+  z-index: -1;
+}
+
 .eventecosystem__inner {
   display: grid;
   grid-template-columns: 1fr;
@@ -683,6 +876,15 @@ button {
 .capabilities {
   min-height: 100svh;
   padding: 0;
+}
+
+.capabilities::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(4, 5, 9, 0.62);
+  pointer-events: none;
+  z-index: -1;
 }
 
 .cap-pin {

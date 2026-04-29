@@ -8,14 +8,13 @@ export default function Contact() {
       <div className="scene__inner contact__inner">
         <div className="contact__body">
           <div>
-            
             <h2 className="contact__kicker">
               <span className="js-mask">
                 <span>If your next</span>
-              </span>{' '}
+              </span>{" "}
               <span className="js-mask">
                 <span>big idea is ready,</span>
-              </span>{' '}
+              </span>{" "}
               <span className="js-mask">
                 <span>
                   we&apos;re <em>ready too.</em>
@@ -23,9 +22,9 @@ export default function Contact() {
               </span>
             </h2>
             <a
-              href="mailto:hello@xevent.studio"
+              href="mailto:sercan@x-event.com.tr"
               className="contact__cta js-rise"
-              style={{ marginTop: '2.5rem' }}
+              style={{ marginTop: "2.5rem" }}
             >
               <span className="contact__cta-glyph">&#8594;</span>
               Start a project
@@ -34,35 +33,34 @@ export default function Contact() {
 
           <div className="contact__details">
             <div className="contact__detail js-rise">
-              <h4>Based in</h4>
-              <p>Turkey &middot; Studio + remote collaboration worldwide</p>
-            </div>
-            <div className="contact__detail js-rise">
-              <h4>New business</h4>
+              <h4>Email</h4>
               <p>
-                <a href="mailto:new@xevent.studio">new@xevent.studio</a>
+                <a href="mailto:sercan@x-event.com.tr">sercan@x-event.com.tr</a>
               </p>
             </div>
             <div className="contact__detail js-rise">
-              <h4>General</h4>
+              <h4>Phone</h4>
               <p>
-                <a href="mailto:hello@xevent.studio">hello@xevent.studio</a>
+                <a href="tel:+905334048026">+90 (533) 404 80 26</a>
               </p>
             </div>
             <div className="contact__detail js-rise">
               <h4>Follow</h4>
               <p>
-                <a href="#">Instagram</a>&nbsp;&middot;&nbsp;
-                <a href="#">LinkedIn</a>&nbsp;&middot;&nbsp;
-                <a href="#">X / Twitter</a>
+                <a
+                  href="https://www.instagram.com/xeventmanagement?igsh=ZDEycXByM2cwdHhn"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
+                  Instagram
+                </a>
               </p>
             </div>
           </div>
         </div>
 
         <footer className="contact__foot">
-          <span>&copy; X Event &mdash; Interactive Experience Studio</span>
-          <span>raptor digital</span>
+          <span>2026 &copy; X Event &mdash; Interactive Experience Studio</span>
         </footer>
       </div>
     </section>

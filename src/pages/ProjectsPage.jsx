@@ -382,7 +382,7 @@ export default function ProjectsPage() {
             <br />
             X Event can turn it into an <em>immersive</em> experience.
           </h2>
-          <a href="/#contact" className="pxoutro__cta js-rise">
+          <a href="mailto:sercan@x-event.com.tr" className="pxoutro__cta js-rise">
             Start a project <span aria-hidden="true">→</span>
           </a>
         </section>
